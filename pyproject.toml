@@ -1,5 +1,5 @@
 [project]
-description = "NextX API cho Python — sinh từ OpenAPI công khai, có kiểu đầy đủ"
+description = "Official Python client for the NextX API"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "NextX", email = "support@nextx.vn"}]
@@ -17,7 +17,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 name = "nextx-sdk"
-version = "0.1.0b5"
+version = "0.1.1b11"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.23.1,<0.29.0",
