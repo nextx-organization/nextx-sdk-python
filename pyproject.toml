@@ -1,0 +1,48 @@
+[project]
+description = "NextX API cho Python — sinh từ OpenAPI công khai, có kiểu đầy đủ"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "NextX", email = "support@nextx.vn"}]
+keywords = ["nextx", "crm", "sales", "api", "sdk", "openapi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+name = "nextx-sdk"
+version = "0.1.0b3"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.23.1,<0.29.0",
+    "attrs>=22.2.0",
+]
+
+[tool.pdm]
+distribution = true
+
+[build-system]
+requires = ["pdm-backend==2.4.5"]
+build-backend = "pdm.backend"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["F", "I", "UP"]
+
+[project.urls]
+Homepage = "https://developers.nextx.vn/docs/sdk"
+Documentation = "https://developers.nextx.vn"
+Source = "https://github.com/nextx-organization/nextx-sdk-python"
+Changelog = "https://github.com/nextx-organization/nextx-sdk-python/blob/main/CHANGELOG.md"
+Issues = "https://github.com/nextx-organization/nextx-sdk-python/issues"
+
+[tool.nextx]
+spec-sha256 = "8367a4f29bfb55a30084563c2cc698431e06c54edf9e54608de0cbf1768238ed"
