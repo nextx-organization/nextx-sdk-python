@@ -1,7 +1,7 @@
-# openapi-python-client — tên gói cố định; phiên bản do scripts/sdk/build.sh ghi đè theo sdk.json.
+# openapi-python-client configuration
 project_name_override: nextx-sdk
 package_name_override: nextx_sdk
 literal_enums: true
 docstrings_on_attributes: true
 post_hooks: []
-package_version_override: 0.1.0
+package_version_override: 0.1.1

@@ -1,4 +1,4 @@
-"""Lối vào gọn cho NextX API.
+"""Convenience entry point for the NextX API.
 
     from nextx_sdk import create_client, SANDBOX_URL
     from nextx_sdk.api.crm import contacts_list
@@ -27,9 +27,9 @@ def create_client(
     timeout: float = 30.0,
     raise_on_unexpected_status: bool = True,
 ) -> AuthenticatedClient:
-    """Tạo client: khoá API của workspace (`nxk_…`, header `X-Api-Key`) HOẶC access token OAuth (`Authorization: Bearer`)."""
+    """Create a client with a workspace API key (`nxk_...`, sent as `X-Api-Key`) or an OAuth access token (sent as `Authorization: Bearer`)."""
     if bool(api_key) == bool(access_token):
-        raise ValueError("NextX SDK: cần đúng một trong api_key hoặc access_token")
+        raise ValueError("NextX SDK: pass exactly one of api_key or access_token")
     import httpx
 
     return AuthenticatedClient(

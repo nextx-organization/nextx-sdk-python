@@ -1,20 +1,25 @@
 # nextx-sdk
 
-> Mã trong kho này được sinh tự động từ [OpenAPI công khai](https://developers.nextx.vn/openapi.json). Đừng sửa tay — xem [CONTRIBUTING.md](CONTRIBUTING.md).
+Thư viện chính thức để gọi NextX API từ Python, hỗ trợ cả đồng bộ và `async`.
 
-Gọi NextX API từ Python, có kiểu đầy đủ (đồng bộ và `async`). Mã sinh từ [`/openapi.json`](https://developers.nextx.vn/openapi.json)
-và chỉ gồm các tuyến đối tác gọi được.
+Mã trong kho này được sinh tự động từ [OpenAPI của NextX](https://developers.nextx.vn/openapi.json). Vui lòng không sửa trực tiếp, xem [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Cài đặt
 
 ```sh
 pip install nextx-sdk
 ```
+
+Yêu cầu Python 3.11 trở lên.
+
+## Bắt đầu
 
 ```python
 import os
 from nextx_sdk import create_client, SANDBOX_URL
 from nextx_sdk.api.crm import contacts_list
 
-# Khoá API của workspace (tạo trong phần mềm NextX) — gửi ở header X-Api-Key
+# Khoá API của workspace, tạo trong phần mềm NextX, gửi ở header X-Api-Key
 nx = create_client(api_key=os.environ["NEXTX_API_KEY"], base_url=SANDBOX_URL)
 
 page = contacts_list.sync(client=nx, page_size=20)
@@ -25,11 +30,18 @@ for c in page.items or []:
 page = await contacts_list.asyncio(client=nx, page_size=20)
 ```
 
-Ứng dụng đối tác dùng OAuth 2.0: `create_client(access_token=token)` (gửi `Authorization: Bearer`).
+Ứng dụng đối tác dùng OAuth 2.0 thì tạo client bằng `create_client(access_token=token)`.
 
-- Python ≥ 3.11. Mỗi thao tác là một mô-đun trong `nextx_sdk.api.<phân hệ>` với 4 hàm: `sync`, `sync_detailed`, `asyncio`, `asyncio_detailed`.
-  Bản `*_detailed` trả thêm mã trạng thái và header.
-- Mặc định gọi prod (`PROD_URL`). Thử nghiệm thì dùng `SANDBOX_URL` với khoá sandbox.
-- Mã trạng thái ngoài tài liệu ném `nextx_sdk.errors.UnexpectedStatus`.
+## Ghi chú
 
-Tài liệu: https://developers.nextx.vn/docs/sdk · Phiên bản và bỏ dần: [VERSIONING.md](https://github.com/nextx-organization/nextx-sdk-python/blob/main/VERSIONING.md) · Giấy phép MIT
+- Mỗi endpoint là một mô-đun trong `nextx_sdk.api.<phân hệ>` với 4 hàm: `sync`, `sync_detailed`, `asyncio`, `asyncio_detailed`. Các hàm `*_detailed` trả thêm mã trạng thái và header.
+- Mặc định client gọi môi trường production (`PROD_URL`). Khi thử nghiệm, dùng `SANDBOX_URL` với khoá sandbox.
+- Mã trạng thái không có trong tài liệu sẽ ném `nextx_sdk.errors.UnexpectedStatus`.
+
+## Tài liệu
+
+- Hướng dẫn: https://developers.nextx.vn/docs/sdk
+- Phiên bản và chính sách ngừng hỗ trợ: [VERSIONING.md](VERSIONING.md)
+- Nhật ký thay đổi: [CHANGELOG.md](CHANGELOG.md)
+
+Giấy phép MIT.
