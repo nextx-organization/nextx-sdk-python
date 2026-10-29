@@ -75,6 +75,8 @@ class MemberDetailDto:
     device_pin: None | str | Unset = UNSET
     app_account_warning: None | str | Unset = UNSET
     contact_sync_warning: None | str | Unset = UNSET
+    tag_ids: list[UUID] | None | Unset = UNSET
+    tag_sync_warning: None | str | Unset = UNSET
 
 
 
@@ -369,6 +371,25 @@ class MemberDetailDto:
         else:
             contact_sync_warning = self.contact_sync_warning
 
+        tag_ids: list[str] | None | Unset
+        if isinstance(self.tag_ids, Unset):
+            tag_ids = UNSET
+        elif isinstance(self.tag_ids, list):
+            tag_ids = []
+            for tag_ids_type_0_item_data in self.tag_ids:
+                tag_ids_type_0_item = str(tag_ids_type_0_item_data)
+                tag_ids.append(tag_ids_type_0_item)
+
+
+        else:
+            tag_ids = self.tag_ids
+
+        tag_sync_warning: None | str | Unset
+        if isinstance(self.tag_sync_warning, Unset):
+            tag_sync_warning = UNSET
+        else:
+            tag_sync_warning = self.tag_sync_warning
+
 
         field_dict: dict[str, Any] = {}
 
@@ -468,6 +489,10 @@ class MemberDetailDto:
             field_dict["appAccountWarning"] = app_account_warning
         if contact_sync_warning is not UNSET:
             field_dict["contactSyncWarning"] = contact_sync_warning
+        if tag_ids is not UNSET:
+            field_dict["tagIds"] = tag_ids
+        if tag_sync_warning is not UNSET:
+            field_dict["tagSyncWarning"] = tag_sync_warning
 
         return field_dict
 
@@ -1024,6 +1049,41 @@ class MemberDetailDto:
         contact_sync_warning = _parse_contact_sync_warning(d.pop("contactSyncWarning", UNSET))
 
 
+        def _parse_tag_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tag_ids_type_0 = []
+                _tag_ids_type_0 = data
+                for tag_ids_type_0_item_data in (_tag_ids_type_0):
+                    tag_ids_type_0_item = UUID(tag_ids_type_0_item_data)
+
+
+
+                    tag_ids_type_0.append(tag_ids_type_0_item)
+
+                return tag_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        tag_ids = _parse_tag_ids(d.pop("tagIds", UNSET))
+
+
+        def _parse_tag_sync_warning(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        tag_sync_warning = _parse_tag_sync_warning(d.pop("tagSyncWarning", UNSET))
+
+
         member_detail_dto = cls(
             id=id,
             branch_id=branch_id,
@@ -1072,6 +1132,8 @@ class MemberDetailDto:
             device_pin=device_pin,
             app_account_warning=app_account_warning,
             contact_sync_warning=contact_sync_warning,
+            tag_ids=tag_ids,
+            tag_sync_warning=tag_sync_warning,
         )
 
         return member_detail_dto
