@@ -52,3 +52,36 @@ def test_access_token_sent_as_bearer():
     _call(create_client(access_token="tok", base_url=SANDBOX_URL), handler)
     assert seen["req"].headers["authorization"] == "Bearer tok"
     assert "x-api-key" not in seen["req"].headers
+
+
+# Official Standard Webhooks test vector — independent of NextX's signer.
+SW = dict(secret="whsec_MfKQ9r8GKYqrTwjUPD8ILPZIo2LaLaSw", id="msg_p5jXN8AQM9LWM0D4loKWxJek",
+          ts=1614265330, body=b'{"test": 2432232314}', sig="v1,g0hM9SsE+OTPJTGt/tmIKtSyZlE3uFJELVlNIOLJ1OE=")
+
+
+def test_webhook_standard_vector():
+    from nextx_sdk.webhooks import sign_webhook, verify_webhook
+
+    assert sign_webhook(SW["secret"], SW["id"], SW["ts"], SW["body"]) == SW["sig"]
+    headers = {"Webhook-Id": SW["id"], "webhook-timestamp": str(SW["ts"]), "webhook-signature": f"v1,old {SW['sig']}"}
+    assert verify_webhook(SW["body"], headers, SW["secret"], now=SW["ts"]) == {"test": 2432232314}
+
+
+@pytest.mark.parametrize("change", ["body", "sig", "late", "missing", "secret"])
+def test_webhook_rejects(change):
+    from nextx_sdk.webhooks import WebhookVerificationError, verify_webhook
+
+    body, secret, now = SW["body"], SW["secret"], SW["ts"]
+    headers = {"webhook-id": SW["id"], "webhook-timestamp": str(SW["ts"]), "webhook-signature": SW["sig"]}
+    if change == "body":
+        body = b'{"test": 1}'
+    elif change == "sig":
+        headers["webhook-signature"] = "v1,AAAA"
+    elif change == "late":
+        now = SW["ts"] + 301
+    elif change == "missing":
+        del headers["webhook-signature"]
+    else:
+        secret = "not-a-secret"
+    with pytest.raises(WebhookVerificationError):
+        verify_webhook(body, headers, secret, now=now)
