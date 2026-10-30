@@ -1,5 +1,6 @@
 """ Contains all the data models used in inputs/outputs """
 
+from .action_item_dto import ActionItemDto
 from .agent_list_result import AgentListResult
 from .agent_summary_dto import AgentSummaryDto
 from .agents_list_status import AgentsListStatus
@@ -22,7 +23,9 @@ from .brand_ref_dto import BrandRefDto
 from .call_flow_list_result import CallFlowListResult
 from .call_flow_summary_dto import CallFlowSummaryDto
 from .call_list_result import CallListResult
+from .call_summary_ai_dto import CallSummaryAiDto
 from .call_summary_dto import CallSummaryDto
+from .call_transcript_dto import CallTranscriptDto
 from .calls_list_direction import CallsListDirection
 from .calls_list_status import CallsListStatus
 from .campaign_list_result import CampaignListResult
@@ -175,6 +178,15 @@ from .paged_result_of_record_dto import PagedResultOfRecordDto
 from .paged_result_of_unknown_lot_report_dto import PagedResultOfUnknownLotReportDto
 from .paged_result_of_workspace_activity_dto import PagedResultOfWorkspaceActivityDto
 from .paged_subscriptions_result import PagedSubscriptionsResult
+from .partner_agent_dto import PartnerAgentDto
+from .partner_agent_ref_request import PartnerAgentRefRequest
+from .partner_agent_status_dto import PartnerAgentStatusDto
+from .partner_call_dto import PartnerCallDto
+from .partner_originate_request import PartnerOriginateRequest
+from .partner_originate_request_metadata_type_0 import PartnerOriginateRequestMetadataType0
+from .partner_recording_link_dto import PartnerRecordingLinkDto
+from .partner_set_agent_status_request import PartnerSetAgentStatusRequest
+from .partner_transfer_request import PartnerTransferRequest
 from .payment_intent_dto import PaymentIntentDto
 from .payment_overview_dto import PaymentOverviewDto
 from .payment_refund_dto import PaymentRefundDto
@@ -250,6 +262,7 @@ from .supplier_info_ref_dto import SupplierInfoRefDto
 from .tag_dto import TagDto
 from .task_detail_dto import TaskDetailDto
 from .timeline_event_row import TimelineEventRow
+from .transcript_segment_dto import TranscriptSegmentDto
 from .unassigned_employee_dto import UnassignedEmployeeDto
 from .unit_ref_dto import UnitRefDto
 from .unknown_lot_report_dto import UnknownLotReportDto
@@ -258,6 +271,7 @@ from .user_ref_dto import UserRefDto
 from .workspace_activity_dto import WorkspaceActivityDto
 
 __all__ = (
+    "ActionItemDto",
     "AgentListResult",
     "AgentsListStatus",
     "AgentSummaryDto",
@@ -282,7 +296,9 @@ __all__ = (
     "CallListResult",
     "CallsListDirection",
     "CallsListStatus",
+    "CallSummaryAiDto",
     "CallSummaryDto",
+    "CallTranscriptDto",
     "CampaignListResult",
     "CampaignsListStatus",
     "CampaignsListType",
@@ -433,6 +449,15 @@ __all__ = (
     "PagedResultOfUnknownLotReportDto",
     "PagedResultOfWorkspaceActivityDto",
     "PagedSubscriptionsResult",
+    "PartnerAgentDto",
+    "PartnerAgentRefRequest",
+    "PartnerAgentStatusDto",
+    "PartnerCallDto",
+    "PartnerOriginateRequest",
+    "PartnerOriginateRequestMetadataType0",
+    "PartnerRecordingLinkDto",
+    "PartnerSetAgentStatusRequest",
+    "PartnerTransferRequest",
     "PaymentIntentDto",
     "PaymentOverviewDto",
     "PaymentRefundDto",
@@ -508,6 +533,7 @@ __all__ = (
     "TagDto",
     "TaskDetailDto",
     "TimelineEventRow",
+    "TranscriptSegmentDto",
     "UnassignedEmployeeDto",
     "UnitRefDto",
     "UnknownLotReportDto",

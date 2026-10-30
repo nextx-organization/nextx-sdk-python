@@ -115,6 +115,7 @@ class ContractSummaryDto:
     invoice_address: None | str | Unset = UNSET
     invoice_buyer_name: None | str | Unset = UNSET
     invoice_email: None | str | Unset = UNSET
+    auto_renew_status: None | str | Unset = UNSET
 
 
 
@@ -561,6 +562,12 @@ class ContractSummaryDto:
         else:
             invoice_email = self.invoice_email
 
+        auto_renew_status: None | str | Unset
+        if isinstance(self.auto_renew_status, Unset):
+            auto_renew_status = UNSET
+        else:
+            auto_renew_status = self.auto_renew_status
+
 
         field_dict: dict[str, Any] = {}
 
@@ -736,6 +743,8 @@ class ContractSummaryDto:
             field_dict["invoiceBuyerName"] = invoice_buyer_name
         if invoice_email is not UNSET:
             field_dict["invoiceEmail"] = invoice_email
+        if auto_renew_status is not UNSET:
+            field_dict["autoRenewStatus"] = auto_renew_status
 
         return field_dict
 
@@ -1546,6 +1555,16 @@ class ContractSummaryDto:
         invoice_email = _parse_invoice_email(d.pop("invoiceEmail", UNSET))
 
 
+        def _parse_auto_renew_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        auto_renew_status = _parse_auto_renew_status(d.pop("autoRenewStatus", UNSET))
+
+
         contract_summary_dto = cls(
             id=id,
             branch_id=branch_id,
@@ -1632,6 +1651,7 @@ class ContractSummaryDto:
             invoice_address=invoice_address,
             invoice_buyer_name=invoice_buyer_name,
             invoice_email=invoice_email,
+            auto_renew_status=auto_renew_status,
         )
 
         return contract_summary_dto
