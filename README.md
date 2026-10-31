@@ -32,6 +32,20 @@ page = await contacts_list.asyncio(client=nx, page_size=20)
 
 Ứng dụng đối tác dùng OAuth 2.0 thì tạo client bằng `create_client(access_token=token)`.
 
+## Nhận webhook
+
+Kiểm chữ ký theo chuẩn [Standard Webhooks](https://www.standardwebhooks.com). Truyền thân gốc (bytes), không phải JSON đã parse:
+
+```python
+from nextx_sdk.webhooks import verify_webhook, WebhookVerificationError
+
+event = verify_webhook(raw_body, request.headers, os.environ["NEXTX_WEBHOOK_SECRET"])
+if event["type"] == "call.completed":
+    call = event["data"]["object"]          # cùng hình dạng GET /api/v1/call/partner/calls/{id}
+```
+
+Sai chữ ký hoặc lệch giờ quá 5 phút thì ném `WebhookVerificationError`. Dùng `event["id"]` để bỏ qua lần giao trùng.
+
 ## Ghi chú
 
 - Mỗi endpoint là một mô-đun trong `nextx_sdk.api.<phân hệ>` với 4 hàm: `sync`, `sync_detailed`, `asyncio`, `asyncio_detailed`. Các hàm `*_detailed` trả thêm mã trạng thái và header.

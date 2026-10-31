@@ -4,6 +4,7 @@ set -euo pipefail
 P=$1; PYVER=$2; SHA=$3
 PKG=$P/nextx_sdk
 cp "$(dirname "$0")/nextx.py" "$PKG/nextx.py"
+cp "$(dirname "$0")/webhooks.py" "$PKG/webhooks.py"
 printf 'VERSION = "%s"\n' "$PYVER" > "$PKG/_version.py"
 cat >> "$PKG/__init__.py" <<'PYEOF'
 
