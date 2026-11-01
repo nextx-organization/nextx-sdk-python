@@ -17,7 +17,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 name = "nextx-sdk"
-version = "0.3.0b31"
+version = "0.3.1b36"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.23.1,<0.29.0",
@@ -45,4 +45,4 @@ Changelog = "https://github.com/nextx-organization/nextx-sdk-python/blob/main/CH
 Issues = "https://github.com/nextx-organization/nextx-sdk-python/issues"
 
 [tool.nextx]
-spec-sha256 = "28c08235e384d4d75ec3c9f455a6a2fd67ed74bc3d33ae7e8bb009a8bd2de393"
+spec-sha256 = "f629acf0f18333a2e53e6b013e49dadc3ebfb5ca75f2dc7877557be0cb10c241"
