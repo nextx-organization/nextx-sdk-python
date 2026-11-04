@@ -52,6 +52,7 @@ def _get_kwargs(
     cash_account_id: UUID | Unset = UNSET,
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
+    approved: bool | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -165,6 +166,8 @@ def _get_kwargs(
 
     params["unassigned"] = unassigned
 
+    params["approved"] = approved
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -245,6 +248,7 @@ def sync_detailed(
     cash_account_id: UUID | Unset = UNSET,
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
+    approved: bool | Unset = UNSET,
 
 ) -> Response[OrderListResult | ProblemDetails]:
     """ Danh sách đơn hàng
@@ -292,6 +296,7 @@ def sync_detailed(
         cash_account_id (UUID | Unset):
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
+        approved (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -335,6 +340,7 @@ include_payment_methods=include_payment_methods,
 cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
+approved=approved,
 
     )
 
@@ -379,6 +385,7 @@ def sync(
     cash_account_id: UUID | Unset = UNSET,
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
+    approved: bool | Unset = UNSET,
 
 ) -> OrderListResult | ProblemDetails | None:
     """ Danh sách đơn hàng
@@ -426,6 +433,7 @@ def sync(
         cash_account_id (UUID | Unset):
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
+        approved (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -470,6 +478,7 @@ include_payment_methods=include_payment_methods,
 cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
+approved=approved,
 
     ).parsed
 
@@ -508,6 +517,7 @@ async def asyncio_detailed(
     cash_account_id: UUID | Unset = UNSET,
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
+    approved: bool | Unset = UNSET,
 
 ) -> Response[OrderListResult | ProblemDetails]:
     """ Danh sách đơn hàng
@@ -555,6 +565,7 @@ async def asyncio_detailed(
         cash_account_id (UUID | Unset):
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
+        approved (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -598,6 +609,7 @@ include_payment_methods=include_payment_methods,
 cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
+approved=approved,
 
     )
 
@@ -642,6 +654,7 @@ async def asyncio(
     cash_account_id: UUID | Unset = UNSET,
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
+    approved: bool | Unset = UNSET,
 
 ) -> OrderListResult | ProblemDetails | None:
     """ Danh sách đơn hàng
@@ -689,6 +702,7 @@ async def asyncio(
         cash_account_id (UUID | Unset):
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
+        approved (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -733,5 +747,6 @@ include_payment_methods=include_payment_methods,
 cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
+approved=approved,
 
     )).parsed

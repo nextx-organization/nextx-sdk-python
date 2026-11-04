@@ -31,6 +31,8 @@ class OrderPaymentEntryDto:
     date: datetime.datetime | Unset = UNSET
     payment_method: None | str | Unset = UNSET
     amount: float | Unset = UNSET
+    bank_account_id: None | Unset | UUID = UNSET
+    bank_account_label: None | str | Unset = UNSET
 
 
 
@@ -59,6 +61,20 @@ class OrderPaymentEntryDto:
 
         amount = self.amount
 
+        bank_account_id: None | str | Unset
+        if isinstance(self.bank_account_id, Unset):
+            bank_account_id = UNSET
+        elif isinstance(self.bank_account_id, UUID):
+            bank_account_id = str(self.bank_account_id)
+        else:
+            bank_account_id = self.bank_account_id
+
+        bank_account_label: None | str | Unset
+        if isinstance(self.bank_account_label, Unset):
+            bank_account_label = UNSET
+        else:
+            bank_account_label = self.bank_account_label
+
 
         field_dict: dict[str, Any] = {}
 
@@ -74,6 +90,10 @@ class OrderPaymentEntryDto:
             field_dict["paymentMethod"] = payment_method
         if amount is not UNSET:
             field_dict["amount"] = amount
+        if bank_account_id is not UNSET:
+            field_dict["bankAccountId"] = bank_account_id
+        if bank_account_label is not UNSET:
+            field_dict["bankAccountLabel"] = bank_account_label
 
         return field_dict
 
@@ -124,12 +144,44 @@ class OrderPaymentEntryDto:
 
         amount = d.pop("amount", UNSET)
 
+        def _parse_bank_account_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                bank_account_id_type_0 = UUID(data)
+
+
+
+                return bank_account_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        bank_account_id = _parse_bank_account_id(d.pop("bankAccountId", UNSET))
+
+
+        def _parse_bank_account_label(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        bank_account_label = _parse_bank_account_label(d.pop("bankAccountLabel", UNSET))
+
+
         order_payment_entry_dto = cls(
             receipt_id=receipt_id,
             receipt_code=receipt_code,
             date=date,
             payment_method=payment_method,
             amount=amount,
+            bank_account_id=bank_account_id,
+            bank_account_label=bank_account_label,
         )
 
         return order_payment_entry_dto

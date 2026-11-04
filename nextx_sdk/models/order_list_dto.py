@@ -86,6 +86,7 @@ class OrderListDto:
     delivery_phone: None | str | Unset = UNSET
     customer_info: OrderListCustomerInfoDto | Unset = UNSET
     outlet_info: OrderListOutletInfoDto | Unset = UNSET
+    receiving_bank_label: None | str | Unset = UNSET
 
 
 
@@ -397,6 +398,12 @@ class OrderListDto:
         if not isinstance(self.outlet_info, Unset):
             outlet_info = self.outlet_info.to_dict()
 
+        receiving_bank_label: None | str | Unset
+        if isinstance(self.receiving_bank_label, Unset):
+            receiving_bank_label = UNSET
+        else:
+            receiving_bank_label = self.receiving_bank_label
+
 
         field_dict: dict[str, Any] = {}
 
@@ -508,6 +515,8 @@ class OrderListDto:
             field_dict["customerInfo"] = customer_info
         if outlet_info is not UNSET:
             field_dict["outletInfo"] = outlet_info
+        if receiving_bank_label is not UNSET:
+            field_dict["receivingBankLabel"] = receiving_bank_label
 
         return field_dict
 
@@ -1097,6 +1106,16 @@ class OrderListDto:
 
 
 
+        def _parse_receiving_bank_label(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        receiving_bank_label = _parse_receiving_bank_label(d.pop("receivingBankLabel", UNSET))
+
+
         order_list_dto = cls(
             id=id,
             code=code,
@@ -1151,6 +1170,7 @@ class OrderListDto:
             delivery_phone=delivery_phone,
             customer_info=customer_info,
             outlet_info=outlet_info,
+            receiving_bank_label=receiving_bank_label,
         )
 
         return order_list_dto
