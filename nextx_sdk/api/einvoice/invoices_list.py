@@ -13,6 +13,7 @@ from ...models.invoices_list_status import check_invoices_list_status
 from ...models.invoices_list_status import InvoicesListStatus
 from ...types import UNSET, Unset
 from typing import cast
+from uuid import UUID
 import datetime
 
 
@@ -26,6 +27,7 @@ def _get_kwargs(
     to_date: datetime.date | Unset = UNSET,
     keyword: str | Unset = UNSET,
     source: str | Unset = UNSET,
+    branch_id: UUID | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -57,6 +59,11 @@ def _get_kwargs(
     params["keyword"] = keyword
 
     params["source"] = source
+
+    json_branch_id: str | Unset = UNSET
+    if not isinstance(branch_id, Unset):
+        json_branch_id = str(branch_id)
+    params["branchId"] = json_branch_id
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -106,6 +113,7 @@ def sync_detailed(
     to_date: datetime.date | Unset = UNSET,
     keyword: str | Unset = UNSET,
     source: str | Unset = UNSET,
+    branch_id: UUID | Unset = UNSET,
 
 ) -> Response[InvoiceDtoPagedResult]:
     """ Lấy danh sách hóa đơn có phân trang
@@ -121,6 +129,7 @@ def sync_detailed(
         to_date (datetime.date | Unset):
         keyword (str | Unset):
         source (str | Unset):
+        branch_id (UUID | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -139,6 +148,7 @@ from_date=from_date,
 to_date=to_date,
 keyword=keyword,
 source=source,
+branch_id=branch_id,
 
     )
 
@@ -158,6 +168,7 @@ def sync(
     to_date: datetime.date | Unset = UNSET,
     keyword: str | Unset = UNSET,
     source: str | Unset = UNSET,
+    branch_id: UUID | Unset = UNSET,
 
 ) -> InvoiceDtoPagedResult | None:
     """ Lấy danh sách hóa đơn có phân trang
@@ -173,6 +184,7 @@ def sync(
         to_date (datetime.date | Unset):
         keyword (str | Unset):
         source (str | Unset):
+        branch_id (UUID | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -192,6 +204,7 @@ from_date=from_date,
 to_date=to_date,
 keyword=keyword,
 source=source,
+branch_id=branch_id,
 
     ).parsed
 
@@ -205,6 +218,7 @@ async def asyncio_detailed(
     to_date: datetime.date | Unset = UNSET,
     keyword: str | Unset = UNSET,
     source: str | Unset = UNSET,
+    branch_id: UUID | Unset = UNSET,
 
 ) -> Response[InvoiceDtoPagedResult]:
     """ Lấy danh sách hóa đơn có phân trang
@@ -220,6 +234,7 @@ async def asyncio_detailed(
         to_date (datetime.date | Unset):
         keyword (str | Unset):
         source (str | Unset):
+        branch_id (UUID | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -238,6 +253,7 @@ from_date=from_date,
 to_date=to_date,
 keyword=keyword,
 source=source,
+branch_id=branch_id,
 
     )
 
@@ -257,6 +273,7 @@ async def asyncio(
     to_date: datetime.date | Unset = UNSET,
     keyword: str | Unset = UNSET,
     source: str | Unset = UNSET,
+    branch_id: UUID | Unset = UNSET,
 
 ) -> InvoiceDtoPagedResult | None:
     """ Lấy danh sách hóa đơn có phân trang
@@ -272,6 +289,7 @@ async def asyncio(
         to_date (datetime.date | Unset):
         keyword (str | Unset):
         source (str | Unset):
+        branch_id (UUID | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -291,5 +309,6 @@ from_date=from_date,
 to_date=to_date,
 keyword=keyword,
 source=source,
+branch_id=branch_id,
 
     )).parsed

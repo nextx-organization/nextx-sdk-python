@@ -28,6 +28,8 @@ def _get_kwargs(
     page: int | Unset = 1,
     page_size: int | Unset = 20,
     include_duplicates: bool | Unset = False,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> dict[str, Any]:
     
@@ -64,6 +66,13 @@ def _get_kwargs(
     params["pageSize"] = page_size
 
     params["includeDuplicates"] = include_duplicates
+
+    json_branch_id: str | Unset = UNSET
+    if not isinstance(branch_id, Unset):
+        json_branch_id = str(branch_id)
+    params["branchId"] = json_branch_id
+
+    params["allBranches"] = all_branches
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -116,6 +125,8 @@ def sync_detailed(
     page: int | Unset = 1,
     page_size: int | Unset = 20,
     include_duplicates: bool | Unset = False,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> Response[PagedResultOfAttendanceRawPunchDto]:
     """ Liệt kê raw punch events
@@ -133,6 +144,8 @@ def sync_detailed(
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 20.
         include_duplicates (bool | Unset):  Default: False.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -154,6 +167,8 @@ to=to,
 page=page,
 page_size=page_size,
 include_duplicates=include_duplicates,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )
 
@@ -176,6 +191,8 @@ def sync(
     page: int | Unset = 1,
     page_size: int | Unset = 20,
     include_duplicates: bool | Unset = False,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> PagedResultOfAttendanceRawPunchDto | None:
     """ Liệt kê raw punch events
@@ -193,6 +210,8 @@ def sync(
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 20.
         include_duplicates (bool | Unset):  Default: False.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -215,6 +234,8 @@ to=to,
 page=page,
 page_size=page_size,
 include_duplicates=include_duplicates,
+branch_id=branch_id,
+all_branches=all_branches,
 
     ).parsed
 
@@ -231,6 +252,8 @@ async def asyncio_detailed(
     page: int | Unset = 1,
     page_size: int | Unset = 20,
     include_duplicates: bool | Unset = False,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> Response[PagedResultOfAttendanceRawPunchDto]:
     """ Liệt kê raw punch events
@@ -248,6 +271,8 @@ async def asyncio_detailed(
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 20.
         include_duplicates (bool | Unset):  Default: False.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -269,6 +294,8 @@ to=to,
 page=page,
 page_size=page_size,
 include_duplicates=include_duplicates,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )
 
@@ -291,6 +318,8 @@ async def asyncio(
     page: int | Unset = 1,
     page_size: int | Unset = 20,
     include_duplicates: bool | Unset = False,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> PagedResultOfAttendanceRawPunchDto | None:
     """ Liệt kê raw punch events
@@ -308,6 +337,8 @@ async def asyncio(
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 20.
         include_duplicates (bool | Unset):  Default: False.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -330,5 +361,7 @@ to=to,
 page=page,
 page_size=page_size,
 include_duplicates=include_duplicates,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )).parsed

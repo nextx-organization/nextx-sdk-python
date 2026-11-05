@@ -24,6 +24,8 @@ def _get_kwargs(
     org_unit_id: UUID | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> dict[str, Any]:
     
@@ -55,6 +57,13 @@ def _get_kwargs(
     params["page"] = page
 
     params["pageSize"] = page_size
+
+    json_branch_id: str | Unset = UNSET
+    if not isinstance(branch_id, Unset):
+        json_branch_id = str(branch_id)
+    params["branchId"] = json_branch_id
+
+    params["allBranches"] = all_branches
 
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
@@ -103,6 +112,8 @@ def sync_detailed(
     org_unit_id: UUID | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> Response[PagedResultOfDailyClockRow]:
     """ P2 — Lịch sử chấm công gom theo ngày (có phân trang)
@@ -116,6 +127,8 @@ def sync_detailed(
         org_unit_id (UUID | Unset):
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 50.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -133,6 +146,8 @@ employee_id=employee_id,
 org_unit_id=org_unit_id,
 page=page,
 page_size=page_size,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )
 
@@ -151,6 +166,8 @@ def sync(
     org_unit_id: UUID | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> PagedResultOfDailyClockRow | None:
     """ P2 — Lịch sử chấm công gom theo ngày (có phân trang)
@@ -164,6 +181,8 @@ def sync(
         org_unit_id (UUID | Unset):
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 50.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -182,6 +201,8 @@ employee_id=employee_id,
 org_unit_id=org_unit_id,
 page=page,
 page_size=page_size,
+branch_id=branch_id,
+all_branches=all_branches,
 
     ).parsed
 
@@ -194,6 +215,8 @@ async def asyncio_detailed(
     org_unit_id: UUID | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> Response[PagedResultOfDailyClockRow]:
     """ P2 — Lịch sử chấm công gom theo ngày (có phân trang)
@@ -207,6 +230,8 @@ async def asyncio_detailed(
         org_unit_id (UUID | Unset):
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 50.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -224,6 +249,8 @@ employee_id=employee_id,
 org_unit_id=org_unit_id,
 page=page,
 page_size=page_size,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )
 
@@ -242,6 +269,8 @@ async def asyncio(
     org_unit_id: UUID | Unset = UNSET,
     page: int | Unset = 1,
     page_size: int | Unset = 50,
+    branch_id: UUID | Unset = UNSET,
+    all_branches: bool | Unset = False,
 
 ) -> PagedResultOfDailyClockRow | None:
     """ P2 — Lịch sử chấm công gom theo ngày (có phân trang)
@@ -255,6 +284,8 @@ async def asyncio(
         org_unit_id (UUID | Unset):
         page (int | Unset):  Default: 1.
         page_size (int | Unset):  Default: 50.
+        branch_id (UUID | Unset):
+        all_branches (bool | Unset):  Default: False.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -273,5 +304,7 @@ employee_id=employee_id,
 org_unit_id=org_unit_id,
 page=page,
 page_size=page_size,
+branch_id=branch_id,
+all_branches=all_branches,
 
     )).parsed

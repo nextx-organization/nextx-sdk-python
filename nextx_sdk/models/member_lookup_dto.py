@@ -31,6 +31,7 @@ class MemberLookupDto:
     phone: None | str | Unset = UNSET
     branch_id: None | Unset | UUID = UNSET
     branch_name: None | str | Unset = UNSET
+    foreign_phone: None | str | Unset = UNSET
 
 
 
@@ -73,6 +74,12 @@ class MemberLookupDto:
         else:
             branch_name = self.branch_name
 
+        foreign_phone: None | str | Unset
+        if isinstance(self.foreign_phone, Unset):
+            foreign_phone = UNSET
+        else:
+            foreign_phone = self.foreign_phone
+
 
         field_dict: dict[str, Any] = {}
 
@@ -90,6 +97,8 @@ class MemberLookupDto:
             field_dict["branchId"] = branch_id
         if branch_name is not UNSET:
             field_dict["branchName"] = branch_name
+        if foreign_phone is not UNSET:
+            field_dict["foreignPhone"] = foreign_phone
 
         return field_dict
 
@@ -168,6 +177,16 @@ class MemberLookupDto:
         branch_name = _parse_branch_name(d.pop("branchName", UNSET))
 
 
+        def _parse_foreign_phone(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        foreign_phone = _parse_foreign_phone(d.pop("foreignPhone", UNSET))
+
+
         member_lookup_dto = cls(
             id=id,
             member_code=member_code,
@@ -175,6 +194,7 @@ class MemberLookupDto:
             phone=phone,
             branch_id=branch_id,
             branch_name=branch_name,
+            foreign_phone=foreign_phone,
         )
 
         return member_lookup_dto
