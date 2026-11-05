@@ -45,6 +45,8 @@ from .comment_request import CommentRequest
 from .completed_intent_dto import CompletedIntentDto
 from .completed_intent_dto_metadata_type_0 import CompletedIntentDtoMetadataType0
 from .contact_branch_lookup_dto import ContactBranchLookupDto
+from .contact_change_dto import ContactChangeDto
+from .contact_changes_result import ContactChangesResult
 from .contact_channel_origin_dto import ContactChannelOriginDto
 from .contact_chat_summary_dto import ContactChatSummaryDto
 from .contact_detail_dto import ContactDetailDto
@@ -95,7 +97,12 @@ from .failure_reason_dto import FailureReasonDto
 from .filter_condition import FilterCondition
 from .filter_condition_dto import FilterConditionDto
 from .get_payment_transactions_result import GetPaymentTransactionsResult
+from .goods_receipt_list_dto import GoodsReceiptListDto
+from .goods_receipt_list_result import GoodsReceiptListResult
+from .goods_receipt_list_summary_dto import GoodsReceiptListSummaryDto
+from .goods_receipts_list_column_filters import GoodsReceiptsListColumnFilters
 from .google_integration_dto import GoogleIntegrationDto
+from .inventory_item_dto import InventoryItemDto
 from .invoice_detail_dto import InvoiceDetailDto
 from .invoice_dto import InvoiceDto
 from .invoice_dto_invoice_context import InvoiceDtoInvoiceContext
@@ -128,6 +135,8 @@ from .my_visit_dto import MyVisitDto
 from .my_week_day_dto import MyWeekDayDto
 from .my_week_route_dto import MyWeekRouteDto
 from .my_week_schedule_dto import MyWeekScheduleDto
+from .opportunity_change_dto import OpportunityChangeDto
+from .opportunity_changes_result import OpportunityChangesResult
 from .opportunity_detail_dto import OpportunityDetailDto
 from .opportunity_detail_dto_custom_fields_type_0 import OpportunityDetailDtoCustomFieldsType0
 from .opportunity_forecast_dto import OpportunityForecastDto
@@ -136,6 +145,8 @@ from .opportunity_stats_dto import OpportunityStatsDto
 from .opportunity_summary_dto import OpportunitySummaryDto
 from .opportunity_tag_dto import OpportunityTagDto
 from .order_assignee_dto import OrderAssigneeDto
+from .order_change_dto import OrderChangeDto
+from .order_changes_result import OrderChangesResult
 from .order_detail_dto import OrderDetailDto
 from .order_detail_dto_custom_fields_type_0 import OrderDetailDtoCustomFieldsType0
 from .order_discount_dto import OrderDiscountDto
@@ -151,6 +162,10 @@ from .order_list_outlet_info_dto import OrderListOutletInfoDto
 from .order_list_result import OrderListResult
 from .order_list_summary_dto import OrderListSummaryDto
 from .order_payment_entry_dto import OrderPaymentEntryDto
+from .order_return_list_dto import OrderReturnListDto
+from .order_return_list_result import OrderReturnListResult
+from .order_return_list_summary_dto import OrderReturnListSummaryDto
+from .order_return_refund_payment_row_dto import OrderReturnRefundPaymentRowDto
 from .order_return_summary_dto import OrderReturnSummaryDto
 from .order_shipping_plan_dto import OrderShippingPlanDto
 from .order_stats_dto import OrderStatsDto
@@ -171,6 +186,7 @@ from .paged_result_of_daily_clock_row import PagedResultOfDailyClockRow
 from .paged_result_of_deleted_product_dto import PagedResultOfDeletedProductDto
 from .paged_result_of_email_campaign_dto import PagedResultOfEmailCampaignDto
 from .paged_result_of_email_template_list_dto import PagedResultOfEmailTemplateListDto
+from .paged_result_of_inventory_item_dto import PagedResultOfInventoryItemDto
 from .paged_result_of_lot_expiry_report_dto import PagedResultOfLotExpiryReportDto
 from .paged_result_of_member_summary_dto import PagedResultOfMemberSummaryDto
 from .paged_result_of_opportunity_summary_dto import PagedResultOfOpportunitySummaryDto
@@ -257,8 +273,12 @@ from .source_breakdown_dto import SourceBreakdownDto
 from .stale_opportunities_dto import StaleOpportunitiesDto
 from .stale_opportunity_item_dto import StaleOpportunityItemDto
 from .stock_forecast_dto import StockForecastDto
+from .stock_movement_list_dto import StockMovementListDto
+from .stock_movement_list_result import StockMovementListResult
+from .stock_movement_list_summary_dto import StockMovementListSummaryDto
 from .subscription_summary_dto import SubscriptionSummaryDto
 from .supplier_info_ref_dto import SupplierInfoRefDto
+from .supplier_list_info_dto import SupplierListInfoDto
 from .tag_dto import TagDto
 from .task_detail_dto import TaskDetailDto
 from .timeline_event_row import TimelineEventRow
@@ -316,6 +336,8 @@ __all__ = (
     "CompletedIntentDto",
     "CompletedIntentDtoMetadataType0",
     "ContactBranchLookupDto",
+    "ContactChangeDto",
+    "ContactChangesResult",
     "ContactChannelOriginDto",
     "ContactChatSummaryDto",
     "ContactDetailDto",
@@ -366,7 +388,12 @@ __all__ = (
     "FilterCondition",
     "FilterConditionDto",
     "GetPaymentTransactionsResult",
+    "GoodsReceiptListDto",
+    "GoodsReceiptListResult",
+    "GoodsReceiptListSummaryDto",
+    "GoodsReceiptsListColumnFilters",
     "GoogleIntegrationDto",
+    "InventoryItemDto",
     "InvoiceDetailDto",
     "InvoiceDto",
     "InvoiceDtoInvoiceContext",
@@ -399,6 +426,8 @@ __all__ = (
     "MyWeekDayDto",
     "MyWeekRouteDto",
     "MyWeekScheduleDto",
+    "OpportunityChangeDto",
+    "OpportunityChangesResult",
     "OpportunityDetailDto",
     "OpportunityDetailDtoCustomFieldsType0",
     "OpportunityForecastDto",
@@ -407,6 +436,8 @@ __all__ = (
     "OpportunitySummaryDto",
     "OpportunityTagDto",
     "OrderAssigneeDto",
+    "OrderChangeDto",
+    "OrderChangesResult",
     "OrderDetailDto",
     "OrderDetailDtoCustomFieldsType0",
     "OrderDiscountDto",
@@ -422,6 +453,10 @@ __all__ = (
     "OrderListResult",
     "OrderListSummaryDto",
     "OrderPaymentEntryDto",
+    "OrderReturnListDto",
+    "OrderReturnListResult",
+    "OrderReturnListSummaryDto",
+    "OrderReturnRefundPaymentRowDto",
     "OrderReturnSummaryDto",
     "OrderShippingPlanDto",
     "OrdersListColumnFilters",
@@ -442,6 +477,7 @@ __all__ = (
     "PagedResultOfDeletedProductDto",
     "PagedResultOfEmailCampaignDto",
     "PagedResultOfEmailTemplateListDto",
+    "PagedResultOfInventoryItemDto",
     "PagedResultOfLotExpiryReportDto",
     "PagedResultOfMemberSummaryDto",
     "PagedResultOfOpportunitySummaryDto",
@@ -528,8 +564,12 @@ __all__ = (
     "StaleOpportunitiesDto",
     "StaleOpportunityItemDto",
     "StockForecastDto",
+    "StockMovementListDto",
+    "StockMovementListResult",
+    "StockMovementListSummaryDto",
     "SubscriptionSummaryDto",
     "SupplierInfoRefDto",
+    "SupplierListInfoDto",
     "TagDto",
     "TaskDetailDto",
     "TimelineEventRow",

@@ -63,6 +63,7 @@ class OpportunitySummaryDto:
     last_disposition: None | str | Unset = UNSET
     last_called_at: datetime.datetime | None | Unset = UNSET
     tags: list[OpportunityTagDto] | None | Unset = UNSET
+    updated_at: datetime.datetime | None | Unset = UNSET
 
 
 
@@ -267,6 +268,14 @@ class OpportunitySummaryDto:
         else:
             tags = self.tags
 
+        updated_at: None | str | Unset
+        if isinstance(self.updated_at, Unset):
+            updated_at = UNSET
+        elif isinstance(self.updated_at, datetime.datetime):
+            updated_at = self.updated_at.isoformat()
+        else:
+            updated_at = self.updated_at
+
 
         field_dict: dict[str, Any] = {}
 
@@ -342,6 +351,8 @@ class OpportunitySummaryDto:
             field_dict["lastCalledAt"] = last_called_at
         if tags is not UNSET:
             field_dict["tags"] = tags
+        if updated_at is not UNSET:
+            field_dict["updatedAt"] = updated_at
 
         return field_dict
 
@@ -726,6 +737,26 @@ class OpportunitySummaryDto:
         tags = _parse_tags(d.pop("tags", UNSET))
 
 
+        def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
+
+
+
+                return updated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        updated_at = _parse_updated_at(d.pop("updatedAt", UNSET))
+
+
         opportunity_summary_dto = cls(
             id=id,
             code=code,
@@ -762,6 +793,7 @@ class OpportunitySummaryDto:
             last_disposition=last_disposition,
             last_called_at=last_called_at,
             tags=tags,
+            updated_at=updated_at,
         )
 
         return opportunity_summary_dto

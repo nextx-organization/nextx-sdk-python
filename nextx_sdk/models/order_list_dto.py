@@ -87,6 +87,7 @@ class OrderListDto:
     customer_info: OrderListCustomerInfoDto | Unset = UNSET
     outlet_info: OrderListOutletInfoDto | Unset = UNSET
     receiving_bank_label: None | str | Unset = UNSET
+    updated_at: datetime.datetime | None | Unset = UNSET
 
 
 
@@ -404,6 +405,14 @@ class OrderListDto:
         else:
             receiving_bank_label = self.receiving_bank_label
 
+        updated_at: None | str | Unset
+        if isinstance(self.updated_at, Unset):
+            updated_at = UNSET
+        elif isinstance(self.updated_at, datetime.datetime):
+            updated_at = self.updated_at.isoformat()
+        else:
+            updated_at = self.updated_at
+
 
         field_dict: dict[str, Any] = {}
 
@@ -517,6 +526,8 @@ class OrderListDto:
             field_dict["outletInfo"] = outlet_info
         if receiving_bank_label is not UNSET:
             field_dict["receivingBankLabel"] = receiving_bank_label
+        if updated_at is not UNSET:
+            field_dict["updatedAt"] = updated_at
 
         return field_dict
 
@@ -1116,6 +1127,26 @@ class OrderListDto:
         receiving_bank_label = _parse_receiving_bank_label(d.pop("receivingBankLabel", UNSET))
 
 
+        def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
+
+
+
+                return updated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        updated_at = _parse_updated_at(d.pop("updatedAt", UNSET))
+
+
         order_list_dto = cls(
             id=id,
             code=code,
@@ -1171,6 +1202,7 @@ class OrderListDto:
             customer_info=customer_info,
             outlet_info=outlet_info,
             receiving_bank_label=receiving_bank_label,
+            updated_at=updated_at,
         )
 
         return order_list_dto

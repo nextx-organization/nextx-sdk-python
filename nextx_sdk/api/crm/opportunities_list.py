@@ -40,6 +40,7 @@ def _get_kwargs(
     sort_by: str | Unset = UNSET,
     next_call_from: datetime.date | Unset = UNSET,
     next_call_to: datetime.date | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -131,6 +132,11 @@ def _get_kwargs(
         json_next_call_to = next_call_to.isoformat()
     params["nextCallTo"] = json_next_call_to
 
+    json_updated_since: str | Unset = UNSET
+    if not isinstance(updated_since, Unset):
+        json_updated_since = updated_since.isoformat()
+    params["updatedSince"] = json_updated_since
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -194,6 +200,7 @@ def sync_detailed(
     sort_by: str | Unset = UNSET,
     next_call_from: datetime.date | Unset = UNSET,
     next_call_to: datetime.date | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[PagedResultOfOpportunitySummaryDto]:
     """ Lấy danh sách opportunities
@@ -228,6 +235,7 @@ def sync_detailed(
         sort_by (str | Unset):
         next_call_from (datetime.date | Unset):
         next_call_to (datetime.date | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -261,6 +269,7 @@ campaign_id=campaign_id,
 sort_by=sort_by,
 next_call_from=next_call_from,
 next_call_to=next_call_to,
+updated_since=updated_since,
 
     )
 
@@ -295,6 +304,7 @@ def sync(
     sort_by: str | Unset = UNSET,
     next_call_from: datetime.date | Unset = UNSET,
     next_call_to: datetime.date | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> PagedResultOfOpportunitySummaryDto | None:
     """ Lấy danh sách opportunities
@@ -329,6 +339,7 @@ def sync(
         sort_by (str | Unset):
         next_call_from (datetime.date | Unset):
         next_call_to (datetime.date | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -363,6 +374,7 @@ campaign_id=campaign_id,
 sort_by=sort_by,
 next_call_from=next_call_from,
 next_call_to=next_call_to,
+updated_since=updated_since,
 
     ).parsed
 
@@ -391,6 +403,7 @@ async def asyncio_detailed(
     sort_by: str | Unset = UNSET,
     next_call_from: datetime.date | Unset = UNSET,
     next_call_to: datetime.date | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[PagedResultOfOpportunitySummaryDto]:
     """ Lấy danh sách opportunities
@@ -425,6 +438,7 @@ async def asyncio_detailed(
         sort_by (str | Unset):
         next_call_from (datetime.date | Unset):
         next_call_to (datetime.date | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -458,6 +472,7 @@ campaign_id=campaign_id,
 sort_by=sort_by,
 next_call_from=next_call_from,
 next_call_to=next_call_to,
+updated_since=updated_since,
 
     )
 
@@ -492,6 +507,7 @@ async def asyncio(
     sort_by: str | Unset = UNSET,
     next_call_from: datetime.date | Unset = UNSET,
     next_call_to: datetime.date | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> PagedResultOfOpportunitySummaryDto | None:
     """ Lấy danh sách opportunities
@@ -526,6 +542,7 @@ async def asyncio(
         sort_by (str | Unset):
         next_call_from (datetime.date | Unset):
         next_call_to (datetime.date | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -560,5 +577,6 @@ campaign_id=campaign_id,
 sort_by=sort_by,
 next_call_from=next_call_from,
 next_call_to=next_call_to,
+updated_since=updated_since,
 
     )).parsed
