@@ -69,6 +69,7 @@ from .create_contact_request import CreateContactRequest
 from .create_contact_request_custom_fields_type_0 import CreateContactRequestCustomFieldsType0
 from .create_instance_request import CreateInstanceRequest
 from .create_instance_request_free_approvers_type_0 import CreateInstanceRequestFreeApproversType0
+from .create_open_api_order_request import CreateOpenApiOrderRequest
 from .create_record_request import CreateRecordRequest
 from .create_task_request import CreateTaskRequest
 from .create_task_request_custom_fields_type_0 import CreateTaskRequestCustomFieldsType0
@@ -135,6 +136,10 @@ from .my_visit_dto import MyVisitDto
 from .my_week_day_dto import MyWeekDayDto
 from .my_week_route_dto import MyWeekRouteDto
 from .my_week_schedule_dto import MyWeekScheduleDto
+from .open_api_order_customer_request import OpenApiOrderCustomerRequest
+from .open_api_order_item_request import OpenApiOrderItemRequest
+from .open_api_order_shipment_dto import OpenApiOrderShipmentDto
+from .open_api_order_status_dto import OpenApiOrderStatusDto
 from .opportunity_change_dto import OpportunityChangeDto
 from .opportunity_changes_result import OpportunityChangesResult
 from .opportunity_detail_dto import OpportunityDetailDto
@@ -360,6 +365,7 @@ __all__ = (
     "CreateContactRequestCustomFieldsType0",
     "CreateInstanceRequest",
     "CreateInstanceRequestFreeApproversType0",
+    "CreateOpenApiOrderRequest",
     "CreateRecordRequest",
     "CreateTaskRequest",
     "CreateTaskRequestCustomFieldsType0",
@@ -426,6 +432,10 @@ __all__ = (
     "MyWeekDayDto",
     "MyWeekRouteDto",
     "MyWeekScheduleDto",
+    "OpenApiOrderCustomerRequest",
+    "OpenApiOrderItemRequest",
+    "OpenApiOrderShipmentDto",
+    "OpenApiOrderStatusDto",
     "OpportunityChangeDto",
     "OpportunityChangesResult",
     "OpportunityDetailDto",
