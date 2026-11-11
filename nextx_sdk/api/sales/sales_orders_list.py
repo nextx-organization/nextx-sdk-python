@@ -53,6 +53,7 @@ def _get_kwargs(
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
     approved: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -168,6 +169,11 @@ def _get_kwargs(
 
     params["approved"] = approved
 
+    json_updated_since: str | Unset = UNSET
+    if not isinstance(updated_since, Unset):
+        json_updated_since = updated_since.isoformat()
+    params["updatedSince"] = json_updated_since
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -249,6 +255,7 @@ def sync_detailed(
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
     approved: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[OrderListResult | ProblemDetails]:
     """ Danh sách đơn hàng
@@ -297,6 +304,7 @@ def sync_detailed(
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
         approved (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -341,6 +349,7 @@ cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
 approved=approved,
+updated_since=updated_since,
 
     )
 
@@ -386,6 +395,7 @@ def sync(
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
     approved: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> OrderListResult | ProblemDetails | None:
     """ Danh sách đơn hàng
@@ -434,6 +444,7 @@ def sync(
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
         approved (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -479,6 +490,7 @@ cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
 approved=approved,
+updated_since=updated_since,
 
     ).parsed
 
@@ -518,6 +530,7 @@ async def asyncio_detailed(
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
     approved: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[OrderListResult | ProblemDetails]:
     """ Danh sách đơn hàng
@@ -566,6 +579,7 @@ async def asyncio_detailed(
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
         approved (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -610,6 +624,7 @@ cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
 approved=approved,
+updated_since=updated_since,
 
     )
 
@@ -655,6 +670,7 @@ async def asyncio(
     bank_account_id: UUID | Unset = UNSET,
     unassigned: bool | Unset = UNSET,
     approved: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> OrderListResult | ProblemDetails | None:
     """ Danh sách đơn hàng
@@ -703,6 +719,7 @@ async def asyncio(
         bank_account_id (UUID | Unset):
         unassigned (bool | Unset):
         approved (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -748,5 +765,6 @@ cash_account_id=cash_account_id,
 bank_account_id=bank_account_id,
 unassigned=unassigned,
 approved=approved,
+updated_since=updated_since,
 
     )).parsed

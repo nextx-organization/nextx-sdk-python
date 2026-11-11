@@ -61,6 +61,16 @@ class CreateContactRequest:
     bank_name: None | str | Unset = UNSET
     bank_branch: None | str | Unset = UNSET
     referral_code_id: None | Unset | UUID = UNSET
+    industry_id: None | Unset | UUID = UNSET
+    customer_group_id: None | Unset | UUID = UNSET
+    tag_ids: list[UUID] | None | Unset = UNSET
+    province_code: None | str | Unset = UNSET
+    district_code: None | str | Unset = UNSET
+    ward_code: None | str | Unset = UNSET
+    notes: None | str | Unset = UNSET
+    contact_person_name: None | str | Unset = UNSET
+    contact_person_phone: None | str | Unset = UNSET
+    contact_person_relationship: None | str | Unset = UNSET
 
 
 
@@ -272,6 +282,77 @@ class CreateContactRequest:
         else:
             referral_code_id = self.referral_code_id
 
+        industry_id: None | str | Unset
+        if isinstance(self.industry_id, Unset):
+            industry_id = UNSET
+        elif isinstance(self.industry_id, UUID):
+            industry_id = str(self.industry_id)
+        else:
+            industry_id = self.industry_id
+
+        customer_group_id: None | str | Unset
+        if isinstance(self.customer_group_id, Unset):
+            customer_group_id = UNSET
+        elif isinstance(self.customer_group_id, UUID):
+            customer_group_id = str(self.customer_group_id)
+        else:
+            customer_group_id = self.customer_group_id
+
+        tag_ids: list[str] | None | Unset
+        if isinstance(self.tag_ids, Unset):
+            tag_ids = UNSET
+        elif isinstance(self.tag_ids, list):
+            tag_ids = []
+            for tag_ids_type_0_item_data in self.tag_ids:
+                tag_ids_type_0_item = str(tag_ids_type_0_item_data)
+                tag_ids.append(tag_ids_type_0_item)
+
+
+        else:
+            tag_ids = self.tag_ids
+
+        province_code: None | str | Unset
+        if isinstance(self.province_code, Unset):
+            province_code = UNSET
+        else:
+            province_code = self.province_code
+
+        district_code: None | str | Unset
+        if isinstance(self.district_code, Unset):
+            district_code = UNSET
+        else:
+            district_code = self.district_code
+
+        ward_code: None | str | Unset
+        if isinstance(self.ward_code, Unset):
+            ward_code = UNSET
+        else:
+            ward_code = self.ward_code
+
+        notes: None | str | Unset
+        if isinstance(self.notes, Unset):
+            notes = UNSET
+        else:
+            notes = self.notes
+
+        contact_person_name: None | str | Unset
+        if isinstance(self.contact_person_name, Unset):
+            contact_person_name = UNSET
+        else:
+            contact_person_name = self.contact_person_name
+
+        contact_person_phone: None | str | Unset
+        if isinstance(self.contact_person_phone, Unset):
+            contact_person_phone = UNSET
+        else:
+            contact_person_phone = self.contact_person_phone
+
+        contact_person_relationship: None | str | Unset
+        if isinstance(self.contact_person_relationship, Unset):
+            contact_person_relationship = UNSET
+        else:
+            contact_person_relationship = self.contact_person_relationship
+
 
         field_dict: dict[str, Any] = {}
 
@@ -343,6 +424,26 @@ class CreateContactRequest:
             field_dict["bankBranch"] = bank_branch
         if referral_code_id is not UNSET:
             field_dict["referralCodeId"] = referral_code_id
+        if industry_id is not UNSET:
+            field_dict["industryId"] = industry_id
+        if customer_group_id is not UNSET:
+            field_dict["customerGroupId"] = customer_group_id
+        if tag_ids is not UNSET:
+            field_dict["tagIds"] = tag_ids
+        if province_code is not UNSET:
+            field_dict["provinceCode"] = province_code
+        if district_code is not UNSET:
+            field_dict["districtCode"] = district_code
+        if ward_code is not UNSET:
+            field_dict["wardCode"] = ward_code
+        if notes is not UNSET:
+            field_dict["notes"] = notes
+        if contact_person_name is not UNSET:
+            field_dict["contactPersonName"] = contact_person_name
+        if contact_person_phone is not UNSET:
+            field_dict["contactPersonPhone"] = contact_person_phone
+        if contact_person_relationship is not UNSET:
+            field_dict["contactPersonRelationship"] = contact_person_relationship
 
         return field_dict
 
@@ -736,6 +837,141 @@ class CreateContactRequest:
         referral_code_id = _parse_referral_code_id(d.pop("referralCodeId", UNSET))
 
 
+        def _parse_industry_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                industry_id_type_0 = UUID(data)
+
+
+
+                return industry_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        industry_id = _parse_industry_id(d.pop("industryId", UNSET))
+
+
+        def _parse_customer_group_id(data: object) -> None | Unset | UUID:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                customer_group_id_type_0 = UUID(data)
+
+
+
+                return customer_group_id_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | Unset | UUID, data)
+
+        customer_group_id = _parse_customer_group_id(d.pop("customerGroupId", UNSET))
+
+
+        def _parse_tag_ids(data: object) -> list[UUID] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                tag_ids_type_0 = []
+                _tag_ids_type_0 = data
+                for tag_ids_type_0_item_data in (_tag_ids_type_0):
+                    tag_ids_type_0_item = UUID(tag_ids_type_0_item_data)
+
+
+
+                    tag_ids_type_0.append(tag_ids_type_0_item)
+
+                return tag_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[UUID] | None | Unset, data)
+
+        tag_ids = _parse_tag_ids(d.pop("tagIds", UNSET))
+
+
+        def _parse_province_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        province_code = _parse_province_code(d.pop("provinceCode", UNSET))
+
+
+        def _parse_district_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        district_code = _parse_district_code(d.pop("districtCode", UNSET))
+
+
+        def _parse_ward_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        ward_code = _parse_ward_code(d.pop("wardCode", UNSET))
+
+
+        def _parse_notes(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        notes = _parse_notes(d.pop("notes", UNSET))
+
+
+        def _parse_contact_person_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        contact_person_name = _parse_contact_person_name(d.pop("contactPersonName", UNSET))
+
+
+        def _parse_contact_person_phone(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        contact_person_phone = _parse_contact_person_phone(d.pop("contactPersonPhone", UNSET))
+
+
+        def _parse_contact_person_relationship(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        contact_person_relationship = _parse_contact_person_relationship(d.pop("contactPersonRelationship", UNSET))
+
+
         create_contact_request = cls(
             contact_type=contact_type,
             full_name=full_name,
@@ -770,6 +1006,16 @@ class CreateContactRequest:
             bank_name=bank_name,
             bank_branch=bank_branch,
             referral_code_id=referral_code_id,
+            industry_id=industry_id,
+            customer_group_id=customer_group_id,
+            tag_ids=tag_ids,
+            province_code=province_code,
+            district_code=district_code,
+            ward_code=ward_code,
+            notes=notes,
+            contact_person_name=contact_person_name,
+            contact_person_phone=contact_person_phone,
+            contact_person_relationship=contact_person_relationship,
         )
 
         return create_contact_request

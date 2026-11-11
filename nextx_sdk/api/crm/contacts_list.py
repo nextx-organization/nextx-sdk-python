@@ -47,6 +47,7 @@ def _get_kwargs(
     branch_id: UUID | Unset = UNSET,
     all_branches: bool | Unset = False,
     sla_overdue: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> dict[str, Any]:
     
@@ -152,6 +153,11 @@ def _get_kwargs(
 
     params["slaOverdue"] = sla_overdue
 
+    json_updated_since: str | Unset = UNSET
+    if not isinstance(updated_since, Unset):
+        json_updated_since = updated_since.isoformat()
+    params["updatedSince"] = json_updated_since
+
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -227,6 +233,7 @@ def sync_detailed(
     branch_id: UUID | Unset = UNSET,
     all_branches: bool | Unset = False,
     sla_overdue: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[PagedResultOfContactSummaryDto | ProblemDetails]:
     """ Lấy danh sách contacts
@@ -263,6 +270,7 @@ def sync_detailed(
         branch_id (UUID | Unset):
         all_branches (bool | Unset):  Default: False.
         sla_overdue (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -301,6 +309,7 @@ column_filters=column_filters,
 branch_id=branch_id,
 all_branches=all_branches,
 sla_overdue=sla_overdue,
+updated_since=updated_since,
 
     )
 
@@ -340,6 +349,7 @@ def sync(
     branch_id: UUID | Unset = UNSET,
     all_branches: bool | Unset = False,
     sla_overdue: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> PagedResultOfContactSummaryDto | ProblemDetails | None:
     """ Lấy danh sách contacts
@@ -376,6 +386,7 @@ def sync(
         branch_id (UUID | Unset):
         all_branches (bool | Unset):  Default: False.
         sla_overdue (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -415,6 +426,7 @@ column_filters=column_filters,
 branch_id=branch_id,
 all_branches=all_branches,
 sla_overdue=sla_overdue,
+updated_since=updated_since,
 
     ).parsed
 
@@ -448,6 +460,7 @@ async def asyncio_detailed(
     branch_id: UUID | Unset = UNSET,
     all_branches: bool | Unset = False,
     sla_overdue: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> Response[PagedResultOfContactSummaryDto | ProblemDetails]:
     """ Lấy danh sách contacts
@@ -484,6 +497,7 @@ async def asyncio_detailed(
         branch_id (UUID | Unset):
         all_branches (bool | Unset):  Default: False.
         sla_overdue (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -522,6 +536,7 @@ column_filters=column_filters,
 branch_id=branch_id,
 all_branches=all_branches,
 sla_overdue=sla_overdue,
+updated_since=updated_since,
 
     )
 
@@ -561,6 +576,7 @@ async def asyncio(
     branch_id: UUID | Unset = UNSET,
     all_branches: bool | Unset = False,
     sla_overdue: bool | Unset = UNSET,
+    updated_since: datetime.datetime | Unset = UNSET,
 
 ) -> PagedResultOfContactSummaryDto | ProblemDetails | None:
     """ Lấy danh sách contacts
@@ -597,6 +613,7 @@ async def asyncio(
         branch_id (UUID | Unset):
         all_branches (bool | Unset):  Default: False.
         sla_overdue (bool | Unset):
+        updated_since (datetime.datetime | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -636,5 +653,6 @@ column_filters=column_filters,
 branch_id=branch_id,
 all_branches=all_branches,
 sla_overdue=sla_overdue,
+updated_since=updated_since,
 
     )).parsed

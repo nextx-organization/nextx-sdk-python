@@ -90,6 +90,7 @@ class ContactSummaryDto:
     branch_name: None | str | Unset = UNSET
     sla_stage: int | Unset = UNSET
     sla_contacted_at: datetime.datetime | None | Unset = UNSET
+    updated_at: datetime.datetime | None | Unset = UNSET
 
 
 
@@ -459,6 +460,14 @@ class ContactSummaryDto:
         else:
             sla_contacted_at = self.sla_contacted_at
 
+        updated_at: None | str | Unset
+        if isinstance(self.updated_at, Unset):
+            updated_at = UNSET
+        elif isinstance(self.updated_at, datetime.datetime):
+            updated_at = self.updated_at.isoformat()
+        else:
+            updated_at = self.updated_at
+
 
         field_dict: dict[str, Any] = {}
 
@@ -582,6 +591,8 @@ class ContactSummaryDto:
             field_dict["slaStage"] = sla_stage
         if sla_contacted_at is not UNSET:
             field_dict["slaContactedAt"] = sla_contacted_at
+        if updated_at is not UNSET:
+            field_dict["updatedAt"] = updated_at
 
         return field_dict
 
@@ -1289,6 +1300,26 @@ class ContactSummaryDto:
         sla_contacted_at = _parse_sla_contacted_at(d.pop("slaContactedAt", UNSET))
 
 
+        def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                updated_at_type_0 = datetime.datetime.fromisoformat(data)
+
+
+
+                return updated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        updated_at = _parse_updated_at(d.pop("updatedAt", UNSET))
+
+
         contact_summary_dto = cls(
             id=id,
             code=code,
@@ -1349,6 +1380,7 @@ class ContactSummaryDto:
             branch_name=branch_name,
             sla_stage=sla_stage,
             sla_contacted_at=sla_contacted_at,
+            updated_at=updated_at,
         )
 
         return contact_summary_dto
